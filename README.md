@@ -21,4 +21,5 @@ into bitesize chunks. It doesn't work yet. I'd appreciate it if anyone could tel
 ### TODO
 * Make it work
 * Add the post-processing shizzazzle to get the lone digit.
-* Work out what precision I need for the floats in the calculation
+* Work out what precision I need for the floats in the calculation.
+* Either create a server-based backend, or P2P
