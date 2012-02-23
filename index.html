@@ -1,17 +1,13 @@
+<script type="text/javascript" src="bignum.js"></script>
 <script type="text/javascript">
 
 var worker = new Worker("compute.js");
 
 worker.onmessage = function(event) {
-	document.getElementById('result').firstChild.nodeValue = event.data.pi;
-	document.getElementById('error').firstChild.nodeValue = event.data.error;
-
+	console.log(event.data);
 }
 
 
-worker.postMessage('');
+worker.postMessage(null);
 
 </script>
-
-<div id="result">Container</div>
-<div id="error">Error</div>

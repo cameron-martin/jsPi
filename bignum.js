@@ -83,6 +83,13 @@ with({$: BigNumber, o: BigNumber.prototype}){
     o.mod = function(n){
         return this.subtract(this.divide(n).intPart().multiply(n));
     };
+    // Make this use bignum library for all variables
+    o.modpow = function(exp, modulo) {
+    	for(var c=new BigNumber(1), e=1; e <= exp; e++) {
+    		c = this.multiply(c).mod(modulo);
+    	}
+    	return c;
+    };
     o.pow = function(n){
         var o = new BigNumber(this), i;
         if((n = (new BigNumber(n)).intPart()) == 0) return o.set(1);
@@ -135,7 +142,6 @@ with({$: BigNumber, o: BigNumber.prototype}){
         }
         return delete this._rounding, this;
     };
-    // Choose number of iterations to follow precision rules
     o.sqrt = function() {
     	var n_old;
     	var n = s = this;
