@@ -1,0 +1,17 @@
+<script type="text/javascript">
+
+var worker = new Worker("compute.js");
+
+worker.onmessage = function(event) {
+	document.getElementById('result').firstChild.nodeValue = event.data.pi;
+	document.getElementById('error').firstChild.nodeValue = event.data.error;
+
+}
+
+
+worker.postMessage('');
+
+</script>
+
+<div id="result">Container</div>
+<div id="error">Error</div>
