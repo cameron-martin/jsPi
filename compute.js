@@ -3,9 +3,15 @@ importScripts('bignum.js');
 var precision = 50;
 
 onmessage = function(e) {
+	var startTime = new Date().getTime();
+	var pi = '';
 	for(var i=1; i<=e.data; i++) {
-		postMessage(calculateDigit(i));
+		pi += calculateDigit(i);
 	}
+	postMessage('PI: '+pi);
+	postMessage('Calculated '+e.data+' digits in '+(((new Date).getTime()-startTime)/1000)+' seconds');
+	
+	close();
 	
 }
 
@@ -23,7 +29,7 @@ var calculateDigit = function(n) {
 			
 			var modulo = new BigNumber(8, precision).multiply(i).add(number);
 
-			if(i<=n) {		
+			if(i<=n) {
 				
 				// Step 1 - calculate the finite part.
 				

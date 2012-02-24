@@ -1,13 +1,22 @@
 <script type="text/javascript" src="bignum.js"></script>
 <script type="text/javascript">
 
-var worker = new Worker("compute.js");
+window.addEventListener('DOMContentLoaded', function() {
 
-worker.onmessage = function(event) {
-	console.log(event.data);
-}
-
-
-worker.postMessage(10);
+	document.getElementById('button').addEventListener('click', function() {
+	
+		var worker = new Worker("compute.js");
+		
+		worker.onmessage = function(event) {
+			console.log(event.data);
+		}
+		
+		
+		worker.postMessage(5);
+	
+	}, false);
+}, false);
 
 </script>
+
+<input type="submit" id="button" value="Calculate Pi" />
