@@ -17,6 +17,9 @@ into bitesize chunks. It doesn't work yet. I'd appreciate it if anyone could tel
 * The computation must be able to be split up into quite self-contained chunks
 * Javascript is quite inefficient for raw number-crunching (I think)
 * There's probably other stuff too...
+* How are results verified? The only way I can think of is to make multiple
+clients do the computation, along with a proof of work, then assume that
+most people aren't malicous.
 
 ### TODO
 * Make it work
