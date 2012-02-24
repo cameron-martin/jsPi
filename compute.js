@@ -3,14 +3,17 @@ importScripts('bignum.js');
 var precision = 50;
 
 onmessage = function(e) {
-	
-	postMessage(calculateDigit(3));
+	for(var i=1; i<=e.data; i++) {
+		postMessage(calculateDigit(i));
+	}
 	
 }
 
 var calculateDigit = function(n) {
 	
 	var r = [];
+	
+	var hex = '0123456789abcdef';
 		
 	[1,4,5,6].forEach(function(number) {
 		// Step 1 - Calculate the finite part
@@ -34,8 +37,9 @@ var calculateDigit = function(n) {
 				s_new = s.add(_16.pow(n-i).divide(modulo));
 				
 				
+				// If theres no change, break.
 				if(s_new.compare(s) === 0) {
-					postMessage(s.toString());
+					//postMessage(s.toString());
 					break;
 				}
 				s = s_new;
@@ -47,5 +51,12 @@ var calculateDigit = function(n) {
 		
 	});
 	
-	return r[0].multiply(4).subtract(r[1].multiply(2)).subtract(r[2]).subtract(r[4]).toString();
+	// Add together the results
+	var result = r[0].multiply(4).subtract(r[1].multiply(2)).subtract(r[2]).subtract(r[4]);
+	
+	//postMessage(result.toString());
+	
+	// Scrap the integer part, base-shift, then scrap decimal part.
+	var position = parseInt(result.subtract(result.intPart()).multiply(16).intPart().toString());
+	return hex.slice(position, position+1);
 }
