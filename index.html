@@ -11,8 +11,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			console.log(event.data);
 		}
 		
-		
-		worker.postMessage(5);
+		worker.postMessage({start: 1, len:1, bignum: true});
+		worker.postMessage({start: 1, len:1, bignum: false});
+
 	
 	}, false);
 }, false);
